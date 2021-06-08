@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-offer',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-offer.page.scss'],
 })
 export class EditOfferPage implements OnInit {
+  offerId: string;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    this.offerId = this.activatedRoute.snapshot.params.offerId;
   }
-
 }

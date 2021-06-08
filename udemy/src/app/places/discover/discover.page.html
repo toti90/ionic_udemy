@@ -1,9 +1,66 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>discover</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Discover Places</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="places">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{places[0].title}}</ion-card-title>
+            <ion-card-subtitle>{{places[0].price}} / Night</ion-card-subtitle>
+          </ion-card-header>
+          <ion-img [src]="places[0].imageUrl"></ion-img>
+          <ion-card-content>
+            <p>{{places[0].description}}</p>
+          </ion-card-content>
+          <div class="ion-text-right">
+            <ion-button
+              fill="clear"
+              [routerLink]="['/', 'places', 'discover', places[0].id]"
+              color="primary"
+            >
+              More
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <!-- <ion-slides [options]="sliderOptions">
+          <ion-slide *ngFor="let place of places">
+            <ion-card>
+              <ion-img [src]="place.imageUrl"></ion-img>
+              <ion-card-content>
+                <h3>{{place.title}}</h3>
+                <h4>{{place.price}}</h4>
+                <p>{{place.description}}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides> -->
+        <ion-list>
+          <ion-item
+            *ngFor="let place of places | slice:1"
+            [routerLink]="['/', 'places', 'discover', place.id]"
+          >
+            <ion-thumbnail slot="start">
+              <ion-img [src]="place.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{place.title}}</h2>
+              <p>{{place.description}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

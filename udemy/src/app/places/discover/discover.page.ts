@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IPlace } from '../place.model';
+import { PlacesService } from '../places.service';
 
 @Component({
   selector: 'app-discover',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discover.page.scss'],
 })
 export class DiscoverPage implements OnInit {
+  places: IPlace[];
 
-  constructor() { }
+  // sliderOptions = {
+  //   slidesPerView: 1.7,
+  //   spaceBetween: 6,
+  //   loop: true,
+  // };
 
-  ngOnInit() {
+  constructor(private placesService: PlacesService) {}
+
+  ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.places = this.placesService.places;
   }
-
 }
